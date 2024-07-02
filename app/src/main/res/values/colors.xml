@@ -1,0 +1,8 @@
+<resources>
+    <color name="material_dynamic_primary40">#6200EE</color>
+    <color name="background_color">#FFFFFF</color> <!-- Defina a cor de fundo desejada -->
+    <color name="secondary_text_color">#757575</color> <!-- Defina a cor desejada para o texto secundário -->
+    <color name="primary_text_color">#000000</color> <!-- Defina a cor desejada para o texto primário -->
+    <color name="button_text_color">#FFFFFF</color> <!-- Defina a cor desejada para o texto dos botões -->
+    <color name="white">#FFFFFF</color> <!-- Cor branca -->
+</resources>
