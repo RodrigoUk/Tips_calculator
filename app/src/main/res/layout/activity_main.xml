@@ -43,7 +43,7 @@
             android:layout_below="@id/icon"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="6dp"
-            android:text="Tips Calculator"
+            android:text="Tips Calculatorrrrr"
             android:textColor="#FFFFFF"
             android:textSize="40sp"
             android:textStyle="bold" />
