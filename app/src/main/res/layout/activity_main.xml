@@ -54,7 +54,7 @@
         android:id="@+id/tv_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="12dp"
         android:text="Fill in the fields below to obtain the result."
         android:textColor="@color/secondary_text_color"
         app:layout_constraintEnd_toEndOf="parent"
