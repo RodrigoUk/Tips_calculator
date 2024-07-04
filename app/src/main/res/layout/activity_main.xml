@@ -8,7 +8,6 @@
     tools:context=".MainActivity">
 
 
-
     <ImageView
         android:id="@+id/watermark_image"
         android:layout_width="0dp"
@@ -43,7 +42,7 @@
             android:layout_below="@id/icon"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="6dp"
-            android:text="Tips Calculatorrrrr"
+            android:text="Tips Calculator"
             android:textColor="#FFFFFF"
             android:textSize="40sp"
             android:textStyle="bold" />
@@ -54,7 +53,7 @@
         android:id="@+id/tv_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_margin="16dp"
         android:text="Fill in the fields below to obtain the result."
         android:textColor="@color/secondary_text_color"
         app:layout_constraintEnd_toEndOf="parent"
@@ -173,6 +172,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_clean"
+        tools:text="57.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
