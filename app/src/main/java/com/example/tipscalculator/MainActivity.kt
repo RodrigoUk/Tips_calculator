@@ -1,82 +1,102 @@
 package com.example.tipscalculator
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.ViewParent
+import android.view.WindowId
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import com.example.tipscalculator.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
-
 class MainActivity : AppCompatActivity() {
-
-    //Valor total da conta
-    //Numero de pessoas
-    //Porcentagem da gorjeta
-    // 10%, 15% or 20%
-    //Calcular
-    //Limpar
-
-    //Recuper as views do layout
-    //Viewbinding
-    //Recuper os radio buttons
-    //Calculo de tips
-    //Mostrar os resultados
 
     private lateinit var binding: ActivityMainBinding
 
-
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var percentage = 0
+        var percentage: Int = 0
+        // Configure percentage based on RadioGroup selection
         binding.rbOptionOne.setOnCheckedChangeListener { _, isChecked ->
-            println("Roque1 Option one:$isChecked")
             if (isChecked) {
                 percentage = 10
             }
         }
 
+
         binding.rbOptionTwo.setOnCheckedChangeListener { _, isChecked ->
-            println("Roque1 Option Two:$isChecked")
             if (isChecked) {
                 percentage = 15
             }
         }
 
         binding.rbOptionThree.setOnCheckedChangeListener { _, isChecked ->
-            println("Roque1 Option Three: $isChecked")
             if (isChecked) {
                 percentage = 20
             }
         }
 
-        binding.btnClean.setOnClickListener {
-            println("Roque1 " + binding.tieTotal.text)
-            println("Roque1 " + binding.tieNumPeople.text)
-        }
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.num_people,
+            android.R.layout.simple_spinner_item
+        )
 
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerNumberOfPeople.adapter = adapter
+
+        var numOfPeopleSelected = 0
+        binding.spinnerNumberOfPeople.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    numOfPeopleSelected = position
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                }
+
+            }
+
+        // Calculate button
         binding.btnDone.setOnClickListener {
             val totalTableTemp = binding.tieTotal.text
-            val nPeopleTemp = binding.tieNumPeople.text
 
-            if (totalTableTemp?.isEmpty() == true ||
-                nPeopleTemp?.isEmpty() == true
+            if (totalTableTemp?.isEmpty() == true
             ) {
-                Snackbar.make(binding.tieTotal, "Please fill in all fields.", Snackbar.LENGTH_LONG)
+                Snackbar
+                    .make(binding.tieTotal, "Please fill in all fields.", Snackbar.LENGTH_LONG)
                     .show()
             } else {
                 val totalTable: Float = totalTableTemp.toString().toFloat()
-                val nPeople: Int = nPeopleTemp.toString().toInt()
+                val nPeople: Int = numOfPeopleSelected
 
                 val totalTemp = totalTable / nPeople
                 val tips = totalTemp * percentage / 100
                 val totalWithTips = totalTemp + tips
-                "Total with tips: $totalWithTips".also {
-                    binding.tvResult.text = it
-
-                }
+                binding.tvResult.text = "Total with tips: $totalWithTips"
             }
+        }
+
+        binding.btnClean.setOnClickListener {
+            binding.tvResult.text = ""
+            binding.tieTotal.setText("")
+            binding.rbOptionOne.isChecked = false
+            binding.rbOptionTwo.isChecked = false
+            binding.rbOptionThree.isChecked = false
         }
     }
 }

@@ -7,7 +7,6 @@
     android:background="@color/background_color"
     tools:context=".MainActivity">
 
-
     <ImageView
         android:id="@+id/watermark_image"
         android:layout_width="0dp"
@@ -18,8 +17,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <RelativeLayout
         android:id="@+id/header_layout"
@@ -29,25 +28,18 @@
         android:padding="16dp"
         tools:ignore="MissingConstraints">
 
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="122dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_foreground" />
-
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/icon"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="6dp"
             android:text="Tips Calculator"
             android:textColor="#FFFFFF"
             android:textSize="40sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
     </RelativeLayout>
-
 
     <TextView
         android:id="@+id/tv_subtitle"
@@ -58,8 +50,8 @@
         android:textColor="@color/secondary_text_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_layout" />
-
+        app:layout_constraintTop_toBottomOf="@id/header_layout"
+        tools:ignore="HardcodedText" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_total"
@@ -69,68 +61,59 @@
         android:hint="Total Amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_subtitle">
+        app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+        tools:ignore="HardcodedText">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tie_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-
+            android:inputType="numberDecimal"
+            android:maxLength="10"
+            android:textColorHint="#616161"
+            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tie_number_of_people"
+    <Spinner
+        android:id="@+id/spinner_number_of_people"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="Number of People"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_total">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tie_num_people"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
-
+        app:layout_constraintTop_toBottomOf="@id/til_total" />
 
     <RadioGroup
         android:id="@+id/rg_percentage"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tie_number_of_people">
+        app:layout_constraintEnd_toEndOf="@id/spinner_number_of_people"
+        app:layout_constraintStart_toStartOf="@id/spinner_number_of_people"
+        app:layout_constraintTop_toBottomOf="@id/spinner_number_of_people">
 
         <RadioButton
             android:id="@+id/rb_option_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10%"
-            android:textColor="@color/primary_text_color" />
+            android:text="10%" />
 
         <RadioButton
             android:id="@+id/rb_option_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="15%"
-            android:textColor="@color/primary_text_color" />
+            android:text="15%" />
 
         <RadioButton
             android:id="@+id/rb_option_three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20%"
-            android:textColor="@color/primary_text_color" />
+            android:text="20%" />
     </RadioGroup>
-
 
     <Button
         android:id="@+id/btn_clean"
@@ -148,7 +131,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rg_percentage" />
 
-
     <Button
         android:id="@+id/btn_done"
         android:layout_width="0dp"
@@ -165,7 +147,6 @@
         app:layout_constraintStart_toEndOf="@id/vertical_guideline"
         app:layout_constraintTop_toBottomOf="@id/rg_percentage" />
 
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vertical_guideline"
         android:layout_width="wrap_content"
@@ -181,9 +162,12 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_clean"
+        app:layout_constraintTop_toBottomOf="@id/btn_done"
         tools:text="57.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 
