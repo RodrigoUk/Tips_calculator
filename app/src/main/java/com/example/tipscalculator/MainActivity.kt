@@ -1,13 +1,12 @@
 package com.example.tipscalculator
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.ViewParent
-import android.view.WindowId
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tipscalculator.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -21,14 +20,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var percentage: Int = 0
+        var percentage = 0
         // Configure percentage based on RadioGroup selection
         binding.rbOptionOne.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 percentage = 10
             }
         }
-
 
         binding.rbOptionTwo.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -48,11 +46,10 @@ class MainActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         )
 
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerNumberOfPeople.adapter = adapter
 
-        var numOfPeopleSelected = 0
+        var numOfPeopleSelected = 1 // Inicializando com 1 para evitar divisão por zero
         binding.spinnerNumberOfPeople.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
 
@@ -62,11 +59,11 @@ class MainActivity : AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-                    numOfPeopleSelected = position
+                    numOfPeopleSelected = position + 1 // Ajustar para considerar o número de pessoas corretamente
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
-
+                    numOfPeopleSelected = 1 // Valor padrão para evitar erros
                 }
 
             }
@@ -75,8 +72,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnDone.setOnClickListener {
             val totalTableTemp = binding.tieTotal.text
 
-            if (totalTableTemp?.isEmpty() == true
-            ) {
+            if (totalTableTemp?.isEmpty() == true) {
                 Snackbar
                     .make(binding.tieTotal, "Please fill in all fields.", Snackbar.LENGTH_LONG)
                     .show()
@@ -84,22 +80,48 @@ class MainActivity : AppCompatActivity() {
                 val totalTable: Float = totalTableTemp.toString().toFloat()
                 val nPeople: Int = numOfPeopleSelected
 
-                val totalTemp = totalTable / nPeople
-                val tips = totalTemp * percentage / 100
-                val totalWithTips = totalTemp + tips
-                binding.tvResult.text = "Total with tips: $totalWithTips"
+                if (nPeople == 0) {
+                    Snackbar
+                        .make(
+                            binding.tieTotal,
+                            "Number of people cannot be zero.",
+                            Snackbar.LENGTH_LONG
+                        )
+                        .show()
+                } else {
+                    val tips = totalTable * percentage / 100 // Calcular gorjeta em cima do total da mesa
+                    val totalWithTips = totalTable + tips // Adicionar gorjeta ao total da mesa
+                    val totalPerPerson = totalWithTips / nPeople // Dividir o total com gorjeta por pessoa
+
+                    //para abrir uma proxima tela abrimos algo chamado intent
+                    //Explicita - diz o destino
+                    //Impricita - nao diz o destino
+                    //(this) activity, ele pede quem esta chamando, sempre que for this e a main activity.
+                    //a intent e depois putextras, intent e um pacote de coisas que temos que por extras nele.
+
+                    val intent = Intent(this, SummaryActivity::class.java) // chamando
+                    intent.apply {
+                        putExtra("totalTable", totalTable)
+                        putExtra("numPeople", numOfPeopleSelected)
+                        putExtra("percentage", percentage)
+                        putExtra("totalAmount", totalPerPerson)
+                    }
+                    startActivity(intent) //iniciando
+
+                }
             }
         }
 
         binding.btnClean.setOnClickListener {
-            binding.tvResult.text = ""
             binding.tieTotal.setText("")
             binding.rbOptionOne.isChecked = false
             binding.rbOptionTwo.isChecked = false
             binding.rbOptionThree.isChecked = false
+            binding.spinnerNumberOfPeople.setSelection(0) // Resetar o spinner
         }
     }
 }
+
 
 
 
