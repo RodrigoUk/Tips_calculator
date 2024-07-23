@@ -1,14 +1,18 @@
 package com.example.tipscalculator
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.tipscalculator.databinding.ActivitySummaryBinding
 
 class SummaryActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySummaryBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_summary)
+        binding = ActivitySummaryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
 
@@ -17,7 +21,15 @@ class SummaryActivity : AppCompatActivity() {
         val percentage = intent.getIntExtra("percentage", 0)
         val totalAmount = intent.getFloatExtra("totalAmount",0.0f)
 
-        println("Roque1 "+ totalAmount)
+        binding.tvPercentage.text = percentage.toString()
+        binding.tvTotalAmount.text = totalAmount.toString()
+        binding.tvTotalTable.text = totalTable.toString()
+        binding.tvNumPeopleTable.text = numPeople.toString()
+
+        binding.btnRefresh.setOnClickListener {
+            finish()
+        }
+
     }
 }
 

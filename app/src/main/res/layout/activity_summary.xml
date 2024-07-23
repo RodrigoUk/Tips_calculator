@@ -2,17 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SummaryActivity">
 
     <TextView
         android:id="@+id/textView"
+        style="@style/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="Summary"
-        android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,35 +22,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="See your bill total below."
+        android:text="@string/summary_subtitle"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
 
     <TextView
         android:id="@+id/tv_total_table_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Total table:"
+        android:text="@string/total_table"
         app:layout_constraintStart_toStartOf="@+id/tv_subtitle"
         app:layout_constraintTop_toBottomOf="@+id/tv_subtitle" />
 
     <TextView
-        android:id="@+id/tv_total_table_table"
+        android:id="@+id/tv_total_table"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_total_table_label"
-        tools:text="R$250,00" />
+        tools:text="R$ 250,00" />
 
     <TextView
         android:id="@+id/tv_num_people_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Number of people:"
+        android:text="@string/num_of_people"
         app:layout_constraintStart_toStartOf="@+id/tv_total_table_label"
         app:layout_constraintTop_toBottomOf="@+id/tv_total_table_label" />
 
@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Percentage:"
+        android:text="@string/percentage"
         app:layout_constraintStart_toStartOf="@+id/tv_num_people_label"
         app:layout_constraintTop_toBottomOf="@+id/tv_num_people_label" />
 
@@ -87,7 +87,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/dark_black"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_percentage_label" />
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="TOTAL:"
+        android:text="@string/total"
         app:layout_constraintStart_toStartOf="@+id/tv_num_people_label"
         app:layout_constraintTop_toBottomOf="@+id/separator" />
 
@@ -107,17 +107,18 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:textSize="24sp"
+        android:maxLength="5"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_total_amount_label"
-        tools:text="£57,50" />
+        tools:text="57,50" />
 
     <Button
         android:id="@+id/btn_refresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Refresh"
+        android:text="@string/refresh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

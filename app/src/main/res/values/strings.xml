@@ -1,15 +1,19 @@
 <resources>
-    <string name="app_name" />
-    <string-array name="num_people">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-    </string-array>
+    <string name="app_name">Tip Calculator</string>
+    <string name="summary_subtitle">See bellow the summary of your bill:</string>
+    <string name="description_of_image">Watermark image</string>
+    <string name="total_table">total table:</string>
+    <string name="num_of_people">num of people:</string>
+    <string name="percentage">percentage:</string>
+    <string name="total">TOTAL:</string>
+    <string name="refresh">refresh</string>
+    <string name="main_subtitle">Fulfill the bellow fields.</string>
+    <string name="table_amount_label">Type the table amount:</string>
+    <string name="table_amount_hint">$ 100.00</string>
+    <string name="num_people_label">Num of people:</string>
+    <string name="num_of_people_hint">4</string>
+    <string name="percentage_label">Percentage of tip:</string>
+    <string name="percentage_tip_hint">10%</string>
+    <string name="clean">clean</string>
+    <string name="calculate">calculate</string>
 </resources>
