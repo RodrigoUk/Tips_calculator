@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <TextView
         android:id="@+id/tv_title"
         style="@style/Title"
@@ -40,8 +39,8 @@
         android:id="@+id/til_total"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
+        android:background="@android:color/transparent"
+        app:boxBackgroundMode="none"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="@+id/tv_subtitle"
         app:layout_constraintStart_toStartOf="@+id/tv_hint_total_table"
@@ -50,7 +49,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tie_total"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:hint="@string/table_amount_hint"
             android:inputType="numberDecimal"
             android:paddingStart="0dp"
@@ -72,8 +72,8 @@
         android:id="@+id/til_num_people"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
+        android:background="@android:color/transparent"
+        app:boxBackgroundMode="none"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="@+id/tv_subtitle"
         app:layout_constraintStart_toStartOf="@+id/tv_hint_num_people"
@@ -82,7 +82,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tie_num_people"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:hint="@string/num_of_people_hint"
             android:inputType="number"
             android:maxLength="2"
@@ -105,8 +106,8 @@
         android:id="@+id/til_percentage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
+        android:background="@android:color/transparent"
+        app:boxBackgroundMode="none"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="@+id/tv_subtitle"
         app:layout_constraintStart_toStartOf="@+id/tv_hint_percentage"
@@ -115,7 +116,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tie_percentage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:hint="@string/percentage_tip_hint"
             android:inputType="number"
             android:maxLength="3"
@@ -124,7 +126,6 @@
             android:textStyle="bold" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_clean"
@@ -157,8 +158,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/vertical_guideline" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 
